@@ -5,20 +5,20 @@ module.exports = {
     node: true,
   },
   extends: [
-    "eslint:recommended",
+    'eslint:recommended',
     // 'plugin:@typescript-eslint/recommended',
-    "airbnb-base",
-    "prettier",
+    'airbnb-base',
+    'prettier',
   ],
   overrides: [],
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: "latest",
+    ecmaVersion: 'latest',
   },
-  plugins: ["@typescript-eslint"],
+  plugins: ['@typescript-eslint'],
   rules: {
     // 'no-console': ['error', { allow: ['warn', 'error'] }],
-    "no-console": "off",
-    "@typescript-eslint/no-unused-vars": "off",
+    'no-console': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
   },
 };
