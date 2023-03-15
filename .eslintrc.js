@@ -6,7 +6,7 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    // 'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended',
     'airbnb-base',
     'prettier',
   ],
@@ -18,7 +18,31 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   rules: {
     // 'no-console': ['error', { allow: ['warn', 'error'] }],
+    'lines-between-class-members': [
+      'error',
+      'always',
+      { exceptAfterSingleLine: true },
+    ],
     'no-console': 'off',
+    'no-param-reassign': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
+    // 'import/prefer-default-export': 'off',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
   },
 };
