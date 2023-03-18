@@ -24,6 +24,7 @@ module.exports = {
       { exceptAfterSingleLine: true },
     ],
     'no-console': 'off',
+    'max-classes-per-file': 'off',
     'no-param-reassign': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
     // 'import/prefer-default-export': 'off',

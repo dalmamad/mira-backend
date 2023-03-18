@@ -1,17 +1,20 @@
 import express, { Express } from 'express';
-import routes from './routes/index.route';
+import { useExpressServer } from 'routing-controllers';
+import controllers from './controllers/index.controller';
 
 class App {
   public app: Express;
-
   constructor() {
     this.app = express();
-    this.routes();
+    this.initControllers();
     this.listen();
   }
 
-  private routes() {
-    this.app.use('/api', routes);
+  private initControllers() {
+    useExpressServer(this.app, {
+      routePrefix: process.env.ROUTEPREFIX,
+      controllers,
+    });
   }
 
   private listen() {

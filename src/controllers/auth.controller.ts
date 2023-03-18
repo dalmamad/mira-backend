@@ -1,7 +1,4 @@
-import { Request, Response } from 'express';
+import { JsonController } from 'routing-controllers';
 
-export default class AuthController {
-  static sayhello(req: Request, res: Response) {
-    res.json({ say: 'hello' });
-  }
-}
+@JsonController()
+export default class AuthController {}
