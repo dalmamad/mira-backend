@@ -1,20 +1,25 @@
 import express, { Express } from 'express';
-import { useExpressServer } from 'routing-controllers';
+import { setControllers } from 'decoress';
 import controllers from './controllers/index.controller';
 
 class App {
   public app: Express;
   constructor() {
     this.app = express();
+    this.initMiddlewares();
     this.initControllers();
     this.listen();
   }
 
   private initControllers() {
-    useExpressServer(this.app, {
-      routePrefix: process.env.ROUTEPREFIX,
+    setControllers(this.app, {
       controllers,
+      pathPrefix: '/api',
     });
+  }
+
+  private initMiddlewares() {
+    this.app.use(express.json());
   }
 
   private listen() {
