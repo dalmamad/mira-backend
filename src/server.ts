@@ -1,6 +1,4 @@
-import dotenv from 'dotenv';
+import './env';
 import App from './app';
 
-dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
-// eslint-disable-next-line
-const app = App.init();
+App.init();

@@ -1,6 +1,6 @@
 import Ajv from 'ajv';
 import addFormat from 'ajv-formats';
-import { ValidateSchema } from '../interfaces/index.interface';
+import { ValidateSchema } from '../types/index.d';
 
 const ajv = new Ajv({ $data: true });
 addFormat(ajv);

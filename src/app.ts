@@ -2,6 +2,9 @@ import express, { Express } from 'express';
 import { setControllers } from 'decoress';
 import GlobalErrorHandler from './middlewares/error-handler.middleware';
 import controllers from './controllers/index.controller';
+import env from './env';
+
+console.log(process.env.PORT);
 
 class App {
   public static app: Express;
@@ -16,7 +19,7 @@ class App {
   private static initControllers() {
     setControllers(this.app, {
       controllers,
-      pathPrefix: '/api',
+      pathPrefix: env.pathPrefix,
     });
   }
 
