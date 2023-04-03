@@ -1,28 +1,34 @@
 import express, { Express } from 'express';
 import { setControllers } from 'decoress';
+import GlobalErrorHandler from './middlewares/error-handler.middleware';
 import controllers from './controllers/index.controller';
 
 class App {
-  public app: Express;
-  constructor() {
+  public static app: Express;
+  public static init() {
     this.app = express();
     this.initMiddlewares();
     this.initControllers();
+    this.errorHandling();
     this.listen();
   }
 
-  private initControllers() {
+  private static initControllers() {
     setControllers(this.app, {
       controllers,
       pathPrefix: '/api',
     });
   }
 
-  private initMiddlewares() {
+  private static initMiddlewares() {
     this.app.use(express.json());
   }
 
-  private listen() {
+  private static errorHandling() {
+    this.app.use(GlobalErrorHandler.middleware);
+  }
+
+  private static listen() {
     this.app.listen(process.env.PORT, () => {
       console.log('server is listening on PORT:', process.env.PORT);
     });

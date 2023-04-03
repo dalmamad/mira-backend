@@ -23,6 +23,7 @@ module.exports = {
       'always',
       { exceptAfterSingleLine: true },
     ],
+    '@typescript-eslint/no-explicit-any': ['off'],
     'no-return-await': 'off',
     'class-methods-use-this': 'off',
     'no-console': 'off',
@@ -30,6 +31,15 @@ module.exports = {
     'max-classes-per-file': 'off',
     'no-param-reassign': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/ban-types': [
+      'error',
+      {
+        types: {
+          Function: false,
+        },
+        extendDefaults: true,
+      },
+    ],
     // 'import/prefer-default-export': 'off',
     'import/extensions': [
       'error',
