@@ -4,12 +4,10 @@ import GlobalErrorHandler from './middlewares/error-handler.middleware';
 import controllers from './controllers/index.controller';
 import env from './env';
 
-console.log(process.env.PORT);
-
 class App {
-  public static app: Express;
+  public static app: Express = express();
+
   public static init() {
-    this.app = express();
     this.initMiddlewares();
     this.initControllers();
     this.errorHandling();

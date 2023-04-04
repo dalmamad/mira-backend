@@ -8,7 +8,7 @@ export default class AuthController {
   @Get('/')
   @Auth()
   async login(req: Request, res: Response): Promise<void> {
-    const user = await UserServices.findUser(req.body.username);
+    const user = await UserServices.findUserById(req.user.id);
     res.status(200).json({ user });
   }
 }

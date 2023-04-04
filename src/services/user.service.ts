@@ -15,9 +15,9 @@ export default class UserServices {
     return newUser;
   }
 
-  public static async findUser(username: string) {
+  public static async findUserById(id: number) {
     return await prisma.user.findUnique({
-      where: { username },
+      where: { id },
     });
   }
 }
