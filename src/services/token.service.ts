@@ -17,7 +17,6 @@ export default class TokenServices {
 
   public static TokenValidatoin(token: string): JwtPayload | string {
     const decode = jwt.verify(token.trim(), env.jwt.secret as string);
-    console.log(decode);
     if (!decode) throw new UnauthorizedError('invalid token');
     return decode;
   }
@@ -25,6 +24,6 @@ export default class TokenServices {
   public static extractToken(authHeader: string | undefined): string {
     if (authHeader && authHeader.startsWith('Bearer '))
       return authHeader.split(' ')[1];
-    throw new UnauthorizedError(' invalid token ');
+    throw new UnauthorizedError('invalid token');
   }
 }

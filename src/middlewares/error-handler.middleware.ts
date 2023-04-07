@@ -3,7 +3,7 @@
 
 import { Request, Response, NextFunction } from 'express';
 import { Prisma } from '@prisma/client';
-import HttpError from '../errors/http.error';
+import HttpError from '../errors/app.error';
 
 class GlobalErrorHandler {
   public static middleware(
