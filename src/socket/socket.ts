@@ -1,7 +1,9 @@
 import { Server } from 'socket.io';
 import http from 'http';
+import { setListeners } from 'sockerate';
 import socketAuth from './middlewares/auth.middleware.socket';
 import listeners from './listeners/index.listener';
+import errorHandler from './error-handler';
 
 export default class Socket {
   public static io: Server;
@@ -19,7 +21,8 @@ export default class Socket {
 
   private static initListeners() {
     Socket.io.on('connection', (socket: any) => {
-      listeners(socket);
+      console.log('new conn');
+      setListeners(socket, { listeners, errorHandler });
     });
   }
 }

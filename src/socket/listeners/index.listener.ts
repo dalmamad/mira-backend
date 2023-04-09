@@ -1,5 +1,4 @@
-import MsgListener from './msg.listener';
+import MessageListener from './message.listener';
 
-export default function listeners(socket: any) {
-  socket.on('new-msg', MsgListener.newMsg);
-}
+const listeners = [MessageListener];
+export default listeners;

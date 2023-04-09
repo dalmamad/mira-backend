@@ -1,5 +1,6 @@
 //  TODO: check exp
 //  TODO: how to make sub number?
+//  TODO: can not read property of undefined on trim
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import env from '../env';
 import UnauthorizedError from '../errors/ٰunauthorized.error';

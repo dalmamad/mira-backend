@@ -5,7 +5,7 @@ import Auth from '../middlewares/auth.middleware';
 
 @Controller('/user')
 export default class AuthController {
-  @Get('/')
+  @Get()
   @Auth()
   async login(req: Request, res: Response): Promise<void> {
     const user = await UserServices.findUserById(req.user.id);
