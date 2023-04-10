@@ -1,5 +1,5 @@
 import { ValidateSchema } from '../types/index.d';
-import getValidate from '../utils/get-validate';
+import { getValidate } from '../utils/get-validate';
 
 export const registerValidate: ValidateSchema = getValidate({
   body: {

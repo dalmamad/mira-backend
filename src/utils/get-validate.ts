@@ -15,11 +15,15 @@ function pickSchema(schema: ValidateSchema): ValidateSchema {
   );
 }
 
-export default function getValidate(schema: ValidateSchema): ValidateSchema {
+export function getValidate(schema: ValidateSchema): ValidateSchema {
   const validateSchema: ValidateSchema = {};
   const pickedSchema = pickSchema(schema);
   (Object.keys(pickedSchema) as Array<keyof ValidateSchema>).forEach((key) => {
     validateSchema[key] = ajv.compile(pickedSchema[key]);
   });
   return validateSchema;
+}
+
+export function getSocketValidate(schema: any) {
+  return ajv.compile(schema);
 }

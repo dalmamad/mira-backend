@@ -1,5 +1,4 @@
 //  TODO: check exp
-//  TODO: how to make sub number?
 //  TODO: can not read property of undefined on trim
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import env from '../env';
@@ -12,7 +11,7 @@ export default class TokenServices {
       iat: new Date().getTime() / 1000,
       exp: (new Date().getTime() + env.jwt.expInMs) / 1000,
     };
-    console.log(payload);
+
     return jwt.sign(payload, env.jwt.secret as string);
   }
 

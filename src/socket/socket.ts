@@ -7,9 +7,11 @@ import errorHandler from './error-handler';
 
 export default class SocketApp {
   public static io: Server;
+  public static users: { [ket: string]: string };
 
   public static init(server: http.Server) {
     this.io = new Server(server);
+    this.users = {};
 
     this.initMiddlewares();
     this.initListeners();
@@ -21,7 +23,7 @@ export default class SocketApp {
 
   private static initListeners() {
     SocketApp.io.on('connection', (socket: Socket) => {
-      console.log('new conn');
+      console.log('new connection');
       setListeners(socket, { listeners, errorHandler });
     });
   }
