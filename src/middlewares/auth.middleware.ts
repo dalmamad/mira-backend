@@ -9,7 +9,7 @@ export default function Auth(): Function {
     const token = TokenServices.extractToken(req.headers.authorization);
     const decode = TokenServices.TokenValidatoin(token);
     req.user = {
-      id: parseInt(decode.sub as string, 10),
+      id: decode.sub as string,
     };
     next();
   }

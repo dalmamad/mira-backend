@@ -9,9 +9,24 @@ generator client {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id String @id @default(cuid())
   username String @unique @db.VarChar(20)
   password String
   contacts     User[]  @relation("contacts")
   contactsRelation User[]  @relation("contacts")
+  sentMsgs Message[] @relation("send")
+  receivedMsgs Message[] @relation("receive")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Message {
+  id String @id @default(cuid())
+  content String
+  sender User @relation(fields:[senderId], references:[id], name:"send")
+  senderId String 
+  receiver User @relation(fields:[receiverId], references:[id], name:"receive")
+  receiverId String 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

@@ -22,7 +22,7 @@ export default class AuthController {
   async login(req: Request, res: Response): Promise<void> {
     const { username, password } = req.body as LoginDTO;
     const user = await AuthServices.loginAthentication(username, password);
-    const token = TokenServices.createToken({ sub: `${user.id}` });
+    const token = TokenServices.createToken({ sub: user.id });
     TokenServices.TokenValidatoin(token);
     res.status(200).json({ token, user });
   }
