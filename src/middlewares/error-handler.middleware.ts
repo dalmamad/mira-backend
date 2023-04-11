@@ -3,7 +3,10 @@
 
 import { Request, Response, NextFunction } from 'express';
 import { Prisma } from '@prisma/client';
+import { JsonWebTokenError } from 'jsonwebtoken';
 import HttpError from '../errors/app.error';
+import UnauthorizedError from '../errors/ٰunauthorized.error';
+import BadRequestError from '../errors/bad-request.error';
 
 class GlobalErrorHandler {
   public static middleware(
@@ -12,6 +15,8 @@ class GlobalErrorHandler {
     res: Response,
     _next: NextFunction
   ): void {
+    if (err instanceof JsonWebTokenError)
+      err = GlobalErrorHandler.jwtErrorHandler(err);
     if (err instanceof Prisma.PrismaClientKnownRequestError)
       err = GlobalErrorHandler.dbErrorHandler(err);
     GlobalErrorHandler.sendErrorResponse(res, err);
@@ -21,12 +26,17 @@ class GlobalErrorHandler {
     err: Prisma.PrismaClientKnownRequestError
   ): HttpError | Prisma.PrismaClientKnownRequestError {
     if (err.code === 'P2002')
-      return new HttpError(`${err.meta?.target} must be unique`, 400);
+      return new BadRequestError(`${err.meta?.target} must be unique`);
     return err;
   }
 
+  private static jwtErrorHandler(
+    err: JsonWebTokenError
+  ): HttpError | Prisma.PrismaClientKnownRequestError {
+    return new UnauthorizedError(err.message);
+  }
+
   private static sendErrorResponse(res: Response, err: unknown) {
-    console.log(err);
     if (err instanceof HttpError)
       res.status(err.statusCode).json({
         statusCode: err.statusCode,
