@@ -2,7 +2,6 @@ import { Socket } from 'socket.io';
 import TokenServices from '../../services/token.service';
 import SocketApp from '../socket';
 
-// TODO: handling token errors
 export default function socketAuth(socket: Socket, next: any) {
   try {
     const { token } = socket.handshake.auth;
