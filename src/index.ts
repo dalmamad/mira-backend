@@ -1,6 +1,6 @@
 import './env';
-import App from './app';
 import Socket from './socket/socket';
+import App from './http/app';
 
 App.init();
 Socket.init(App.server);

@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "NODE_ENV=development nodemon src/server.ts",
+    "dev": "NODE_ENV=development nodemon src/index.ts",
     "prepare": "husky install",
     "clean": "npx rimraf build/",
     "build": "NODE_ENV=production npm run clean && npx tsc",
-    "start": "node build/server.js",
+    "start": "node build/index.js",
     "format": "npx prettier --write ."
   },
   "author": "dalmamad",

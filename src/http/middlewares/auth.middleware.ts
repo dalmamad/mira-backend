@@ -1,6 +1,6 @@
 import { Mw } from 'decoress';
 import { Request, Response, NextFunction } from 'express';
-import TokenServices from '../services/token.service';
+import TokenServices from '../../services/token.service';
 // TODO: clear 'as ...' in decode.sub by requiring sub
 // TODO: handling unvalidate token error in erroHandler
 

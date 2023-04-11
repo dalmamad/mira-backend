@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { Controller, Get } from 'decoress';
-import UserServices from '../services/user.service';
+import UserServices from '../../services/user.service';
 import Auth from '../middlewares/auth.middleware';
 
 @Controller('/user')
