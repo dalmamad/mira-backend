@@ -2,7 +2,7 @@ import express, { Express } from 'express';
 import { setControllers } from 'decoress';
 import http from 'http';
 import cors from 'cors';
-import GlobalErrorHandler from './middlewares/error-handler.middleware';
+import GlobalErrorHandler from './errors/globalErrorHandler';
 import controllers from './controllers/index.controller';
 import env from './env';
 
@@ -30,7 +30,7 @@ export default class App {
   }
 
   private static errorHandling() {
-    this.app.use(GlobalErrorHandler.middleware);
+    this.app.use(GlobalErrorHandler.http);
   }
 
   private static listen() {

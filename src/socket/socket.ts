@@ -3,7 +3,7 @@ import http from 'http';
 import { setListeners } from 'sockerate';
 import socketAuth from './middlewares/auth.middleware.socket';
 import listeners from './listeners/index.listener';
-import errorHandler from './error-handler';
+import GlobalErrorHandler from '../errors/globalErrorHandler';
 
 export default class SocketApp {
   public static io: Server;
@@ -24,7 +24,10 @@ export default class SocketApp {
   private static initListeners() {
     SocketApp.io.on('connection', (socket: Socket) => {
       console.log('new connection');
-      setListeners(socket, { listeners, errorHandler });
+      setListeners(socket, {
+        listeners,
+        errorHandler: GlobalErrorHandler.socket,
+      });
     });
   }
 }
