@@ -1,4 +1,4 @@
-import BadRequestError from '../../errors/bad-request.error';
+import BadRequestError from '../../errors/badRequest.error';
 
 export default function validate(validator: any, data: any) {
   if (!validator(data)) {

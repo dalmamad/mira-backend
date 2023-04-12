@@ -1,4 +1,4 @@
-import { getSocketValidate } from '../../utils/get-validate';
+import { getSocketValidate } from '../../utils/getValidate';
 
 export const newMessageValidate = getSocketValidate({
   type: 'object',

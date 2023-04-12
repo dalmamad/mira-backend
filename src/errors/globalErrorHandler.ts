@@ -3,7 +3,7 @@ import { Prisma } from '@prisma/client';
 import { JsonWebTokenError } from 'jsonwebtoken';
 import AppError from './app.error';
 import UnauthorizedError from './ٰunauthorized.error';
-import BadRequestError from './bad-request.error';
+import BadRequestError from './badRequest.error';
 
 class GlobalErrorHandler {
   public static http(
@@ -49,6 +49,8 @@ class GlobalErrorHandler {
       err = GlobalErrorHandler.jwtErrorHandler(err);
     if (err instanceof Prisma.PrismaClientKnownRequestError)
       err = GlobalErrorHandler.dbErrorHandler(err);
+    if (err.name === 'SyntaxError')
+      err = GlobalErrorHandler.jsonErrorHandler(err);
     return err;
   }
 
@@ -58,6 +60,10 @@ class GlobalErrorHandler {
     if (err.code === 'P2002')
       return new BadRequestError(`${err.meta?.target} must be unique`);
     return err;
+  }
+
+  private static jsonErrorHandler(err: Error): AppError {
+    return new BadRequestError(err.message);
   }
 
   private static jwtErrorHandler(err: JsonWebTokenError): AppError {

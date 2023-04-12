@@ -4,4 +4,9 @@ export class NewMessageDTO {
   receiverId: string;
 }
 
-export class UpdateMessageDTO {}
+export class GetPvMessages {
+  since: string;
+  receiverId: string;
+  senderId: string;
+  qty: string | number;
+}
