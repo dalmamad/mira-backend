@@ -1,11 +1,8 @@
-import { User } from '@prisma/client';
-import bcrypt from 'bcrypt';
 import prisma from '../client';
-import { RegisterDTO } from '../dtos/auth.dto';
 import ForbiddenError from '../errors/forbidden.error';
-import exclude from '../utils/exclude';
+import BadRequestError from '../errors/badRequest.error';
 
-export default class UserServices {
+export default class ContactServices {
   public static async findUserContacts(userId: string) {
     const user = await prisma.user.findUnique({
       where: {
@@ -15,6 +12,21 @@ export default class UserServices {
     });
     console.log(user);
     return user?.contacts;
+  }
+
+  public static async addContact(userId: string, contactId: string) {
+    ContactServices.userIdContactIdNotEqual(userId, contactId);
+    return await prisma.contact.create({
+      data: {
+        userId,
+        contactId,
+      },
+    });
+  }
+
+  private static userIdContactIdNotEqual(userId: string, contactId: string) {
+    if (userId === contactId)
+      throw new BadRequestError('userId and contaId should not be equal');
   }
 
   public static async isContact(userId: string, targetId: string) {

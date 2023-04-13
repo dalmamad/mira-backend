@@ -28,6 +28,7 @@ model Contact {
   contact User @relation(fields:[contactId], references:[id], name:"contactsRelation")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  @@unique([userId,contactId])
 }
 
 model Message {

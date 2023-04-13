@@ -2,7 +2,6 @@ import { User } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import prisma from '../client';
 import { RegisterDTO } from '../dtos/auth.dto';
-import ForbiddenError from '../errors/forbidden.error';
 import exclude from '../utils/exclude';
 
 export default class UserServices {
