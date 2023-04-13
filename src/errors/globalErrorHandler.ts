@@ -12,6 +12,8 @@ class GlobalErrorHandler {
     res: Response,
     _next: NextFunction
   ): void {
+    console.log(err);
+
     err = GlobalErrorHandler.setError(err);
 
     if (err instanceof AppError)
@@ -25,6 +27,7 @@ class GlobalErrorHandler {
   }
 
   public static socket(err: Error, res: Function) {
+    console.log(err);
     err = GlobalErrorHandler.setError(err);
     if (err instanceof AppError)
       res({

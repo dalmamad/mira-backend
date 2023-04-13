@@ -4,7 +4,7 @@ import validate from '../middlewares/validate.middleware.socket';
 import { newMessageValidate } from '../validations/message.validate.socket';
 import { NewMessageDTO } from '../../dtos/message.dto';
 import MessageServices from '../../services/message.service';
-import UserServices from '../../services/user.service';
+import ContactServices from '../../services/contact.service';
 
 @Listener('/message')
 export default class MessageListener {
@@ -16,7 +16,7 @@ export default class MessageListener {
   ) {
     const senderId = socket.user.id;
     validate(newMessageValidate, message);
-    // await UserServices.isContact(senderId, message.receiverId);
+    // await ContactServices.isContact(senderId, message.receiverId);
     await MessageServices.saveMessage({ ...message, senderId });
     MessageServices.sendMessage(socket, { ...message, senderId });
 

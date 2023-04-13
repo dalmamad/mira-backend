@@ -12,10 +12,20 @@ model User {
   id String @id @default(cuid())
   username String @unique @db.VarChar(20)
   password String
-  contacts     User[]  @relation("contacts")
-  contactsRelation User[]  @relation("contacts")
+  contacts     Contact[]  @relation("contacts")
+  contactsRelation Contact[]  @relation("contactsRelation")
   sentMsgs Message[] @relation("send")
   receivedMsgs Message[] @relation("receive")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Contact {
+  id String @id @default(cuid())
+  userId String
+  contactId String
+  user User @relation(fields:[userId], references:[id], name:"contacts")
+  contact User @relation(fields:[contactId], references:[id], name:"contactsRelation")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

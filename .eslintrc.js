@@ -25,6 +25,7 @@ module.exports = {
     ],
     '@typescript-eslint/no-explicit-any': ['off'],
     'no-return-await': 'off',
+    'no-restricted-syntax': 'off',
     'no-unused-vars': 'off',
     'class-methods-use-this': 'off',
     'no-console': 'off',
