@@ -7,7 +7,7 @@ import Validate from '../middlewares/validate.middleware';
 import { registerValidate } from '../validations/contact.validate';
 
 @Controller('/contact')
-export default class AuthController {
+export default class ContactController {
   @Get('/all')
   @Auth()
   async getContacts(req: Request, res: Response): Promise<void> {

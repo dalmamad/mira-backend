@@ -4,14 +4,11 @@ import BadRequestError from '../errors/badRequest.error';
 
 export default class ContactServices {
   public static async findUserContacts(userId: string) {
-    const user = await prisma.user.findUnique({
+    return await prisma.contact.findMany({
       where: {
-        id: userId,
+        userId,
       },
-      include: { contacts: true },
     });
-    console.log(user);
-    return user?.contacts;
   }
 
   public static async addContact(userId: string, contactId: string) {
