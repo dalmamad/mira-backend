@@ -2,13 +2,13 @@ import { ValidateSchema } from '../../types/index.d';
 import { getValidate } from '../../utils/getValidate';
 
 /* eslint-disable import/prefer-default-export */
-export const registerValidate: ValidateSchema = getValidate({
-  body: {
+export const searchUserValidate: ValidateSchema = getValidate({
+  query: {
     type: 'object',
     properties: {
-      contactId: { type: 'string' },
+      username: { type: 'string' },
     },
-    required: ['contactId'],
+    required: ['username'],
     additionalProperties: false,
   },
 });

@@ -1,4 +1,4 @@
 /* eslint-disable import/prefer-default-export */
-export class AddContactDTO {
-  contactId: string;
+export class SearchUserDTO {
+  username: string;
 }

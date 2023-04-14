@@ -1,6 +1,7 @@
 import { ValidateSchema } from '../../types/index.d';
 import { getValidate } from '../../utils/getValidate';
 
+/* eslint-disable import/prefer-default-export */
 export const getPvMessagesValidate: ValidateSchema = getValidate({
   query: {
     type: 'object',
@@ -13,5 +14,3 @@ export const getPvMessagesValidate: ValidateSchema = getValidate({
     additionalProperties: false,
   },
 });
-
-export const TempValidate: ValidateSchema = getValidate({});

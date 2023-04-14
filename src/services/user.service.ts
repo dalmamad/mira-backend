@@ -25,4 +25,14 @@ export default class UserServices {
     }
     return user;
   }
+
+  public static async findUserByUsername(username: string) {
+    const user = await prisma.user.findUnique({
+      where: { username },
+    });
+    if (user) {
+      exclude(user, ['password']);
+    }
+    return user;
+  }
 }
