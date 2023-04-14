@@ -23,7 +23,9 @@ export default class SocketApp {
 
   private static initListeners() {
     SocketApp.io.on('connection', (socket: Socket) => {
-      console.log('new connection');
+      socket.on('disconnect', () => {
+        delete SocketApp.users[socket.user.id];
+      });
       setListeners(socket, {
         listeners,
         errorHandler: GlobalErrorHandler.socket,

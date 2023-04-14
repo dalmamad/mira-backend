@@ -8,18 +8,27 @@ import ContactServices from '../../services/contact.service';
 
 @Listener('/message')
 export default class MessageListener {
-  @On('/new')
-  public async newMessage(
+  @On('/pv')
+  public async getAllMessages(
     socket: Socket,
     message: Omit<NewMessageDTO, 'sender'>,
     res: Function
   ) {
-    const senderId = socket.user.id;
     validate(newMessageValidate, message);
-    // await ContactServices.isContact(senderId, message.recipientId);
-    await MessageServices.saveMessage({ ...message, senderId });
-    MessageServices.sendMessage(socket, { ...message, senderId });
 
-    res({ status: true });
+    const senderId = socket.user.id;
+    // await ContactServices.isContact(senderId, message.recipientId);
+    const newMessage = await MessageServices.saveMessage({
+      ...message,
+      senderId,
+    });
+    const received = MessageServices.sendMessage(socket, {
+      ...message,
+      senderId,
+    });
+    console.log('received: ', received);
+    if (received) await MessageServices.addToReceived(newMessage.id);
+
+    res({ status: true, received });
   }
 }

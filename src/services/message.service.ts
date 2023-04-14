@@ -11,7 +11,37 @@ export default class MessageServices {
 
   public static sendMessage(socket: Socket, message: NewMessageDTO) {
     const recipientSocketId = SocketApp.users[message.recipientId];
-    socket.to(recipientSocketId).emit('/msg', message);
+    if (recipientSocketId) {
+      socket.to(recipientSocketId).emit('/msg', message);
+      return true;
+    }
+    return false;
+  }
+
+  public static async addToReceived(messageId: string) {
+    await prisma.message.update({
+      where: { id: messageId },
+      data: { received: true },
+    });
+  }
+
+  public static async findNewMessages(userId: string) {
+    return await prisma.message.findMany({
+      where: {
+        recipientId: userId,
+        received: false,
+      },
+    });
+  }
+
+  public static async addManyToReceived(userId: string) {
+    return await prisma.message.updateMany({
+      where: {
+        recipientId: userId,
+        received: false,
+      },
+      data: { received: true },
+    });
   }
 
   public static async findPvMessages({
@@ -25,9 +55,11 @@ export default class MessageServices {
         createdAt: 'desc',
       },
       where: {
-        senderId,
-        recipientId,
-        createdAt: { gt: since },
+        OR: [
+          { senderId, recipientId },
+          { senderId: recipientId, recipientId: senderId },
+        ],
+        createdAt: { lt: since },
       },
       take: qty as number,
     });

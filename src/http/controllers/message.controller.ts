@@ -25,4 +25,13 @@ export default class AuthController {
     });
     res.status(200).json({ messages });
   }
+
+  @Get('/new')
+  @Auth()
+  async getNewMessages(req: Request, res: Response) {
+    const userId = req.user.id;
+    const newMessages = await MessageServices.findNewMessages(userId);
+    await MessageServices.addManyToReceived(userId);
+    res.status(200).json({ newMessages });
+  }
 }
