@@ -1,0 +1,22 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - /data/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: mira
+  mira:
+    container_name: mira
+    restart: always
+    build: .
+    ports:
+      - '3040:3040'
+    environment:
+      - DATABASE_URL=postgresql://user:pass@postgres:5432/mira
+    depends_on:
+      - postgres
