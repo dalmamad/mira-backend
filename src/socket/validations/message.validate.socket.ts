@@ -4,9 +4,9 @@ export const newMessageValidate = getSocketValidate({
   type: 'object',
   properties: {
     content: { type: 'string' },
-    receiverId: { type: 'string' },
+    recipientId: { type: 'string' },
   },
-  required: ['content', 'receiverId'],
+  required: ['content', 'recipientId'],
   additionalProperties: false,
 });
 

@@ -6,10 +6,10 @@ export const getPvMessagesValidate: ValidateSchema = getValidate({
     type: 'object',
     properties: {
       since: { type: 'string', format: 'date-time' },
-      receiverId: { type: 'string' },
+      recipientId: { type: 'string' },
       qty: { type: 'string', queryNumRange: { max: 50 } },
     },
-    required: ['receiverId', 'since', 'qty'],
+    required: ['recipientId', 'since', 'qty'],
     additionalProperties: false,
   },
 });

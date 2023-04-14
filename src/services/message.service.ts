@@ -10,13 +10,13 @@ export default class MessageServices {
   }
 
   public static sendMessage(socket: Socket, message: NewMessageDTO) {
-    const receiverSocketId = SocketApp.users[message.receiverId];
-    socket.to(receiverSocketId).emit('/msg', message);
+    const recipientSocketId = SocketApp.users[message.recipientId];
+    socket.to(recipientSocketId).emit('/msg', message);
   }
 
   public static async findPvMessages({
     senderId,
-    receiverId,
+    recipientId,
     since,
     qty,
   }: GetPvMessages) {
@@ -26,7 +26,7 @@ export default class MessageServices {
       },
       where: {
         senderId,
-        receiverId,
+        recipientId,
         createdAt: { gt: since },
       },
       take: qty as number,

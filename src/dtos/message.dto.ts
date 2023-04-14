@@ -1,12 +1,12 @@
 export class NewMessageDTO {
   content: string;
   senderId: string;
-  receiverId: string;
+  recipientId: string;
 }
 
 export class GetPvMessages {
   since: string;
-  receiverId: string;
+  recipientId: string;
   senderId: string;
   qty: string | number;
 }

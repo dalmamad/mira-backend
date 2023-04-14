@@ -15,11 +15,11 @@ export default class AuthController {
     req: Request<object, object, object, GetPvMessages>,
     res: Response
   ): Promise<void> {
-    const { receiverId, since, qty } = req.query;
+    const { recipientId, since, qty } = req.query;
     const qtyNum = parseInt(qty as string, 10);
     const messages = await MessageServices.findPvMessages({
       senderId: req.user.id,
-      receiverId,
+      recipientId,
       since,
       qty: qtyNum,
     });

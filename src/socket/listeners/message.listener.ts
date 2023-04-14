@@ -16,7 +16,7 @@ export default class MessageListener {
   ) {
     const senderId = socket.user.id;
     validate(newMessageValidate, message);
-    // await ContactServices.isContact(senderId, message.receiverId);
+    // await ContactServices.isContact(senderId, message.recipientId);
     await MessageServices.saveMessage({ ...message, senderId });
     MessageServices.sendMessage(socket, { ...message, senderId });
 

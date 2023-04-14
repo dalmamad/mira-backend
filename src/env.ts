@@ -1,7 +1,3 @@
-import dotenv from 'dotenv';
-
-dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
-
 const secInMs = 1000;
 const minInMs = 60 * secInMs;
 const hourInMs = 60 * minInMs;

@@ -36,8 +36,9 @@ model Message {
   content String
   sender User @relation(fields:[senderId], references:[id], name:"send")
   senderId String 
-  receiver User @relation(fields:[receiverId], references:[id], name:"receive")
-  receiverId String 
+  recipient User @relation(fields:[recipientId], references:[id], name:"receive")
+  recipientId String 
+  received Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
