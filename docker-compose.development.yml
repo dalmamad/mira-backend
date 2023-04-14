@@ -1,0 +1,27 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    ports:
+      - '54321:5432'
+    volumes:
+      - /data/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: mira
+  mira:
+    container_name: mira-dev
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    volumes:
+      - ./:/mira-backend
+    ports:
+      - '3040:3040'
+      - '5555:5555'
+    environment:
+      - DATABASE_URL=postgresql://user:pass@postgres:5432/mira
+    depends_on:
+      - postgres
