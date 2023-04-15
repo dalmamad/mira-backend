@@ -17,7 +17,9 @@ CREATE TABLE "Contact" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "Contact_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Contact_pkey" PRIMARY KEY ("id"),
+    CONSTRAINT "contactId_not_userId" CHECK ("userId" <> "contactId")
+
 );
 
 -- CreateTable
