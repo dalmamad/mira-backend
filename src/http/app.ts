@@ -2,6 +2,8 @@ import express from 'express';
 import { setControllers } from 'decoress';
 import http from 'http';
 import cors from 'cors';
+import swaggerDoc from 'swagger-ui-express';
+import swaggerDocument from '../docs/http/swaggerDocument';
 import GlobalErrorHandler from '../errors/globalErrorHandler';
 import controllers from './controllers/index.controller';
 import env from '../env';
@@ -14,6 +16,7 @@ export default class App {
     this.initMiddlewares();
     this.initControllers();
     this.errorHandling();
+    this.initDocs();
     this.listen();
   }
 
@@ -37,5 +40,9 @@ export default class App {
     this.server.listen(process.env.PORT, () => {
       console.log('server is listening on PORT:', process.env.PORT);
     });
+  }
+
+  private static initDocs() {
+    this.app.use('/docs', swaggerDoc.serve, swaggerDoc.setup(swaggerDocument));
   }
 }
