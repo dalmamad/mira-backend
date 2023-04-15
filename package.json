@@ -9,7 +9,7 @@
     "dev:docker": "prisma migrate dev && npm run dev",
     "prepare": "husky install",
     "clean": "rimraf build/",
-    "clean:modules": "rimraf node_modules/ ",
+    "clean:docker": "rimraf node_modules/ src/",
     "build": "npm run clean && npx tsc",
     "start": "dotenv -e .env.production -- node build/index.js",
     "start:docker": "prisma migrate deploy && npm run start",

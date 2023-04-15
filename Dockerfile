@@ -4,7 +4,7 @@ COPY package*.json ./
 RUN npm i
 COPY . .
 RUN npm run build
-RUN npm run clean:modules
+RUN npm run clean:docker
 RUN npm i --production
 CMD [ "npm" ,"run", "start:docker"]
 
