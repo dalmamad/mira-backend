@@ -8,7 +8,18 @@ export default class ContactServices {
       where: {
         userId,
       },
-      select: { contact: true, id: true, createdAt: true },
+      select: {
+        contact: {
+          select: {
+            id: true,
+            username: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        id: true,
+        createdAt: true,
+      },
     });
   }
 

@@ -1,5 +1,6 @@
-import userPaths from './user.doc';
-import authPaths from './auth.doc';
+import UserDoc from './user.doc';
+import AuthDoc from './auth.doc';
+import ContactDoc from './contact.doc';
 
 const swaggerDocument = {
   openapi: '3.0.0',
@@ -13,6 +14,10 @@ const swaggerDocument = {
     {
       name: 'user',
       description: 'API endpoints for managing users',
+    },
+    {
+      name: 'contact',
+      description: 'API endpoints for managing contacts',
     },
     {
       name: 'auth',
@@ -29,32 +34,14 @@ const swaggerDocument = {
       },
     },
     schemas: {
-      User: {
-        type: 'object',
-        properties: {
-          id: {
-            type: 'string',
-            example: 'clgibyvzb000055d45s0vnvdf',
-          },
-          username: {
-            type: 'string',
-            example: 'user1',
-          },
-          createdAt: {
-            type: 'date',
-            example: '2023-04-15T18:47:38.073Z',
-          },
-          updatedAt: {
-            type: 'date',
-            example: '2023-04-16T18:47:38.073Z',
-          },
-        },
-      },
+      ...UserDoc.schema,
+      ...ContactDoc.schema,
     },
   },
   paths: {
-    ...userPaths,
-    ...authPaths,
+    ...UserDoc.paths,
+    ...AuthDoc.paths,
+    ...ContactDoc.paths,
   },
 };
 

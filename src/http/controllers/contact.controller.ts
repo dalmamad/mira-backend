@@ -15,7 +15,7 @@ export default class ContactController {
     res.status(200).json({ constacts });
   }
 
-  @Post('/add')
+  @Post('/')
   @Auth()
   @Validate(registerValidate)
   async addContact(

@@ -62,6 +62,7 @@ class GlobalErrorHandler {
   ): AppError | Prisma.PrismaClientKnownRequestError {
     if (err.code === 'P2002')
       return new BadRequestError(`${err.meta?.target} must be unique`);
+    if (err.code === 'P2003') return new BadRequestError('bad request');
     return err;
   }
 
