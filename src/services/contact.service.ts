@@ -32,6 +32,15 @@ export default class ContactServices {
     });
   }
 
+  public static async deleteUserContact(userId: string, id: string) {
+    return await prisma.contact.deleteMany({
+      where: {
+        userId,
+        id,
+      },
+    });
+  }
+
   public static async isContact(userId: string, targetId: string) {
     const user = await prisma.user.findUnique({
       where: {

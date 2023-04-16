@@ -1,10 +1,13 @@
 import { Request, Response } from 'express';
-import { Controller, Get, Post } from 'decoress';
-import { AddContactDTO } from '../../dtos/contact.dto';
+import { Controller, Get, Post, Delete } from 'decoress';
+import { AddContactDTO, DeleteContactDTO } from '../../dtos/contact.dto';
 import ContactServices from '../../services/contact.service';
 import Auth from '../middlewares/auth.middleware';
 import Validate from '../middlewares/validate.middleware';
-import { registerValidate } from '../validations/contact.validate';
+import {
+  addContactValidate,
+  deleteContactValidate,
+} from '../validations/contact.validate';
 
 @Controller('/contact')
 export default class ContactController {
@@ -17,7 +20,7 @@ export default class ContactController {
 
   @Post('/')
   @Auth()
-  @Validate(registerValidate)
+  @Validate(addContactValidate)
   async addContact(
     req: Request<object, object, AddContactDTO, object>,
     res: Response
@@ -27,5 +30,19 @@ export default class ContactController {
       req.body.contactId
     );
     res.status(200).json({ newContact });
+  }
+
+  @Delete('/:id')
+  @Auth()
+  @Validate(deleteContactValidate)
+  async deleteContact(
+    req: Request<DeleteContactDTO, object, DeleteContactDTO, object>,
+    res: Response
+  ): Promise<void> {
+    const deleted = await ContactServices.deleteUserContact(
+      req.user.id,
+      req.params.id
+    );
+    res.status(200).json({ deleted });
   }
 }

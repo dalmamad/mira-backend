@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Controller, Get, Post } from 'decoress';
+import { Controller, Get } from 'decoress';
 import MessageServices from '../../services/message.service';
 import { GetPvMessages } from '../../dtos/message.dto';
 import Validate from '../middlewares/validate.middleware';
