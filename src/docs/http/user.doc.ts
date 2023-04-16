@@ -34,7 +34,7 @@ export default class UserDoc {
 
   private static searchUser = {
     tags: ['user'],
-    summary: 'Create a new user',
+    summary: 'find a User',
     description: 'Creates a new user with the provided data',
     security: [
       {

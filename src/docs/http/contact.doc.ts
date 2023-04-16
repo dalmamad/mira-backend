@@ -54,7 +54,7 @@ export default class ContactDoc {
   };
 
   private static deleteContact = {
-    summary: 'delete contact',
+    summary: 'delete a Contact',
     description: 'delete contact of current user',
     security: [
       {

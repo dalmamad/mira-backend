@@ -43,6 +43,10 @@ export default class App {
   }
 
   private static initDocs() {
-    this.app.use('/docs', swaggerDoc.serve, swaggerDoc.setup(swaggerDocument));
+    this.app.use(
+      '/docs/http',
+      swaggerDoc.serve,
+      swaggerDoc.setup(swaggerDocument)
+    );
   }
 }
