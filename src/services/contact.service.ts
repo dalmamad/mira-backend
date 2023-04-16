@@ -32,23 +32,22 @@ export default class ContactServices {
     });
   }
 
-  public static async deleteUserContact(userId: string, id: string) {
-    return await prisma.contact.deleteMany({
+  public static async deleteContact(id: string) {
+    return await prisma.contact.delete({
       where: {
-        userId,
         id,
       },
     });
   }
 
-  public static async isContact(userId: string, targetId: string) {
+  public static async isContact(userId: string, contactId: string) {
     const user = await prisma.user.findUnique({
       where: {
         id: userId,
       },
       include: { contacts: true },
     });
-    const contact = user?.contacts.find((c) => c.id === targetId);
-    if (!contact) throw new ForbiddenError('Is Not Your Contacts');
+    const contact = user?.contacts.find((c) => c.id === contactId);
+    if (!contact) throw new ForbiddenError('Permission Denied');
   }
 }

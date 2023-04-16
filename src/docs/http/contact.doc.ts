@@ -53,6 +53,55 @@ export default class ContactDoc {
     },
   };
 
+  private static deleteContact = {
+    summary: 'delete contact',
+    description: 'delete contact of current user',
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
+    tags: ['contact'],
+    parameters: [
+      {
+        name: 'id',
+        description: 'id of contact row',
+        in: 'path',
+        required: true,
+        schema: {
+          type: 'string',
+          example: 'clgjg1hxw0004559ka4k216bc',
+        },
+      },
+    ],
+    responses: {
+      200: {
+        description: 'Successful response',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              properties: {
+                deleted: {
+                  $ref: '#/components/schemas/Contact',
+                },
+              },
+            },
+          },
+        },
+      },
+      401: {
+        description: 'unauthorized error',
+      },
+      403: {
+        description: 'Permission Denied',
+      },
+      500: {
+        description: 'Internal server error',
+      },
+    },
+  };
+
   private static findUserContact = {
     summary: 'find User Contacts',
     description: 'find all contacts of User',
@@ -100,6 +149,7 @@ export default class ContactDoc {
 
   public static paths = {
     '/contact': { post: this.addContact },
+    '/contact/{id}': { delete: this.deleteContact },
     '/contact/all': { get: this.findUserContact },
   };
 

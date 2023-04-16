@@ -39,10 +39,8 @@ export default class ContactController {
     req: Request<DeleteContactDTO, object, DeleteContactDTO, object>,
     res: Response
   ): Promise<void> {
-    const deleted = await ContactServices.deleteUserContact(
-      req.user.id,
-      req.params.id
-    );
+    await ContactServices.isContact(req.user.id, req.params.id);
+    const deleted = await ContactServices.deleteContact(req.params.id);
     res.status(200).json({ deleted });
   }
 }
