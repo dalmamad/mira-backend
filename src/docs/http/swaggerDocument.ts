@@ -1,5 +1,6 @@
 import UserDoc from './user.doc';
 import AuthDoc from './auth.doc';
+import MessageDoc from './messeage.doc';
 import ContactDoc from './contact.doc';
 
 const swaggerDocument = {
@@ -14,6 +15,10 @@ const swaggerDocument = {
     {
       name: 'user',
       description: 'API endpoints for managing users',
+    },
+    {
+      name: 'message',
+      description: 'API endpoints for managing messages',
     },
     {
       name: 'contact',
@@ -36,12 +41,14 @@ const swaggerDocument = {
     schemas: {
       ...UserDoc.schema,
       ...ContactDoc.schema,
+      ...MessageDoc.schema,
     },
   },
   paths: {
     ...UserDoc.paths,
     ...AuthDoc.paths,
     ...ContactDoc.paths,
+    ...MessageDoc.paths,
   },
 };
 
