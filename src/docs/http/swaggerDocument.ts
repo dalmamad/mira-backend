@@ -1,4 +1,4 @@
-import userDoc from './user.doc';
+import userPaths from './user.doc';
 import authPaths from './auth.doc';
 
 const swaggerDocument = {
@@ -53,7 +53,7 @@ const swaggerDocument = {
     },
   },
   paths: {
-    ...userDoc,
+    ...userPaths,
     ...authPaths,
   },
 };
