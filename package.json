@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "dotenv -e .env.development -- nodemon src/index.ts",
-    "dev:docker": "prisma migrate dev && npm run dev",
     "prepare": "husky install",
     "clean": "rimraf build/",
     "clean:docker": "rimraf node_modules/ src/",
