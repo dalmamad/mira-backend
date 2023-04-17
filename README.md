@@ -1,16 +1,16 @@
 # Mira-backend
 
-this project is a backend of Mira which is a realtime chat-app.
-for now only backend is completed. however api-docs are privided and you can make your own frontend for this backend.
+this project is a backend for `Mira` which is a realtime chat-app.
+for now only backend is completed. however api-docs are privided and you can make your own `frontend` for this backend.
 
-# Technologies Used
+## Technologies Used
 
 - nodejs/express
 - postgresql
 - socket.io
 - prisma
 
-# Prerequisites
+## Prerequisites
 
 - nodejs
 - npm
@@ -18,9 +18,9 @@ for now only backend is completed. however api-docs are privided and you can mak
 - docker
 - docker compose
 
-# installation
+## installation
 
-## production
+### production
 
 this project is also dockerized. so to run it on production enviroment follow this steps:
 
@@ -43,11 +43,11 @@ sudo docker compose build
 sudo docker compose up
 ```
 
-## development
+### development
 
 you can run this project in development enviroment with or without docker
 
-### without docker
+#### without docker
 
 1. make sure `nodejs` and `postgresql` are installed on your system.
 2. make sure `postgresql` is running on port 5432
@@ -57,7 +57,7 @@ you can run this project in development enviroment with or without docker
 npm i
 ```
 
-### with docker
+#### with docker
 
 1. make sure docker and docker compose are installed on your system.
 2. run this command:
@@ -67,17 +67,17 @@ sudo docker compose -f docker-compose.development.yml build
 sudo docker compose -f docker-compose.development.yml up
 ```
 
-# Documents
+## Documents
 
 both `Http` and `WebSocket` protocols are used in this project.
 
-## Http
+### Http
 
 http documents are provided using swagger.
 
 after running server you can get document on path `http://localhost:3040/docs/http`
 
-## WebSocket
+### WebSocket
 
 unfortunately there is no tool similar to swagger for describing WebSocket so for this reason document is provided is markdown format.
 
