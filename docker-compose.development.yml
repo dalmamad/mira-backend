@@ -20,7 +20,6 @@ services:
       - ./:/mira-backend
     ports:
       - '3040:3040'
-      - '5555:5555'
     environment:
       - DATABASE_URL=postgresql://user:pass@postgres:5432/mira
     depends_on:

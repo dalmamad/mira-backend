@@ -1,6 +1,3 @@
 FROM node:14-alpine
 WORKDIR /mira-backend
-COPY package*.json ./
 CMD [ "npm" ,"run", "dev:docker"]
-
-
