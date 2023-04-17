@@ -1,4 +1,7 @@
-import express from 'express';
+import express, { Response, Request } from 'express';
+import { join } from 'path';
+import { readFile } from 'fs';
+import { marked } from 'marked';
 import { setControllers } from 'decoress';
 import http from 'http';
 import cors from 'cors';
@@ -48,5 +51,10 @@ export default class App {
       swaggerDoc.serve,
       swaggerDoc.setup(swaggerDocument)
     );
+
+    this.app.get('/docs/ws', (_req: Request, res: Response) => {
+      const path = join(__dirname, '../docs/ws/socketDocument.html');
+      res.sendFile(path);
+    });
   }
 }
