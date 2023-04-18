@@ -6,9 +6,9 @@ import ContactDoc from './contact.doc';
 const swaggerDocument = {
   openapi: '3.0.0',
   info: {
-    title: 'My API',
-    version: '1.0.0',
-    description: 'API documentation for My API',
+    title: 'Mira',
+    version: '0.1.1',
+    description: 'API documentation for Mira',
   },
   servers: [{ url: `http://localhost:${process.env.PORT}/api` }],
   tags: [

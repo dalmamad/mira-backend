@@ -1,5 +1,9 @@
 # Mira-backend
 
+<p align="center">
+  <img src="./ReadmeAssets/apiDocImg.png"/>
+</p>
+
 this project is a backend for `Mira` which is a realtime chat-app.
 for now only backend is completed. however api-docs are privided and you can make your own `frontend` for this backend.
 
@@ -36,7 +40,9 @@ git clone https://github.com/dalmamad/mira-backend.git
 cd mira-backend
 ```
 
-3. use docker:
+3. set your enviroment variables in docker-compose.yml and .env.production files
+
+4. use docker:
 
 ```bash
 sudo docker compose build
@@ -50,17 +56,25 @@ you can run this project in development enviroment with or without docker
 #### without docker
 
 1. make sure `nodejs` and `postgresql` are installed on your system.
-2. make sure `postgresql` is running on port 5432
-3. after downloading repo, go in project root folder and execute this command on terminal
+2. make sure `postgresql` is running on you system.
+3. set your enviroment variables in .env.development file.
+4. after downloading repo, go to the project root folder and execute this command on terminal
 
 ```bash
 npm i
 ```
 
+5. you also need to run this command to add schema to your database:
+
+```bash
+npm run migrate:dev
+```
+
 #### with docker
 
-1. make sure docker and docker compose are installed on your system.
-2. run this command:
+1. make sure `docker` and `docker compose` are installed on your system.
+2. set your enviroment variables in docker-compose.development.yml and .env.development files
+3. run this commands:
 
 ```bash
 sudo docker compose -f docker-compose.development.yml build
