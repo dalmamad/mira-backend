@@ -93,6 +93,6 @@ after running server you can get document on path `http://localhost:3040/docs/ht
 
 ### WebSocket
 
-unfortunately there is no tool similar to swagger for describing WebSocket so for this reason document is provided is markdown format.
+unfortunately there is no tool similar to swagger for describing WebSocket so for this reason document is provided in markdown format.
 
 after running server you can get this document on path `http://localhost:3040/docs/ws`
